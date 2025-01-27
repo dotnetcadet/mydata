@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>$(MyDataTargetFramework)</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Folder Include="Domains\Bea\" />
+	  <Folder Include="Domains\Bls\" />
+	  <Folder Include="Domains\Fda\" />
+	</ItemGroup>
+</Project>

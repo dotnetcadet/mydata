@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>$(MyDataTargetFramework)</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\MyData.Databases.SqlServer\MyData.Databases.SqlServer.csproj" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" >
+	<PropertyGroup>
+		<TargetFramework>$(MyDataTargetFramework)</TargetFramework>
+		<RootNamespace>MyData.Clients</RootNamespace>
+	</PropertyGroup>
+</Project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build">
+  <Sdk Name="Microsoft.Build.Sql" Version="0.2.0-preview" />
+  <PropertyGroup>
+    <Name>MyData</Name>
+    <ProjectGuid>{A1613F5A-6C0A-4CDA-8AAE-51993900579D}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <ModelCollation>1033, CI</ModelCollation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include=".scripts" />
+    <Folder Include=".scripts\post" />
+    <Folder Include=".scripts\pre" />
+    <Folder Include=".security" />
+    <Folder Include=".security\schemas" />
+    <Folder Include="bea" />
+    <Folder Include="bea\bea" />
+    <Folder Include="cdc" />
+    <Folder Include="cdc\tables" />
+    <Folder Include="census" />
+    <Folder Include="census\tables" />
+    <Folder Include="core" />
+    <Folder Include="core\tables" />
+    <Folder Include="fbi" />
+    <Folder Include="fda" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include=".scripts\post\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <Target Name="BeforeBuild">
+    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
+  </Target>
+</Project>

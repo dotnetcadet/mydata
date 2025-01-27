@@ -1,0 +1,45 @@
+version: '3.8'
+name: mydata
+services:
+  census-tasks:
+    build:
+      context: .
+      dockerfile: domains/census/src/MyData.Census.Tasks/Dockerfile
+    depends_on:
+      - database
+
+  bea-tasks:
+    build:
+      context: .
+      dockerfile: domains/bea/src/MyData.Bea.Tasks/Dockerfile
+    depends_on:
+      - database
+
+  bls-tasks:
+    build:
+      context: .
+      dockerfile: domains/bls/src/MyData.Bls.Tasks/Dockerfile
+    depends_on:
+      - database
+
+  fda-tasks:
+    build:
+      context: .
+      dockerfile: domains/fda/src/MyData.Fda.Tasks/Dockerfile
+    depends_on:
+      - database
+
+  cdc-tasks:
+    build:
+      context: .
+      dockerfile: domains/cdc/src/MyData.Cdc.Tasks/Dockerfile
+    depends_on:
+      - database
+
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+    - "1433:1433"
+    environment:
+      SA_PASSWORD: "Kg<j>aie48934!245jf"
+      ACCEPT_EULA: "Y"

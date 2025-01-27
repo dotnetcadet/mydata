@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        <MyDataTargetFramework>net9.0</MyDataTargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Include="appsettings.json" Condition="Exists('$(MSBuildProjectDirectory)\appsettings.json')" >
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="appsettings.Development.json" Condition="Exists('$(MSBuildProjectDirectory)\appsettings.Development.json')" >
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+</Project>
