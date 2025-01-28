@@ -1,10 +1,14 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MyData.Clients;
 
 public interface IClientRequest
 {
-    Uri Uri { get; }
+    ClientRequestMethod Method { get; }
+    IList<string> Paths { get; }
+    IDictionary<string, string> Queries { get; }
+    IDictionary<string, string> Headers { get; }
+    Stream Body { get; }
 }

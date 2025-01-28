@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using MyData.Census.Tasks.Options;
 using MyData.Census.Tasks;
+using MyData.Clients;
 
 var builder = Host.CreateApplicationBuilder();
 
@@ -16,6 +17,11 @@ builder.Services.AddOptions<MyDataOptions>()
         configuration.GetSection("MyData").Bind(options));
 
 builder.Services.AddHttpClient();
+
+builder.AddClients(options =>
+{
+    options.AddRESTCountriesClient();
+});
 
 builder.AddMyDataDbContext();
 builder.AddMyDataQuartzJobs();

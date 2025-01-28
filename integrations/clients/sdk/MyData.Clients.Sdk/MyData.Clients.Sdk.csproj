@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>$(MyDataTargetFramework)</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\MyData.Clients.Bea\MyData.Clients.Bea.csproj" />
+	  <ProjectReference Include="..\..\src\MyData.Clients.Bls\MyData.Clients.Bls.csproj" />
+	  <ProjectReference Include="..\..\src\MyData.Clients.Census\MyData.Clients.Census.csproj" />
+	  <ProjectReference Include="..\..\src\MyData.Clients.Fda\MyData.Clients.Fda.csproj" />
+	  <ProjectReference Include="..\..\src\MyData.Clients.RESTCountry\MyData.Clients.RESTCountry.csproj" />
+	  <ProjectReference Include="..\..\src\MyData.Clients.Usda\MyData.Clients.Usda.csproj" />
+	</ItemGroup>
+</Project>

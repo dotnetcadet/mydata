@@ -14,4 +14,9 @@
 		<PackageReference Update="StronglyTypedId" Version="1.0.0-beta08" PrivateAssets="all" ExcludeAssets="runtime" />
 		<PackageReference Update="StronglyTypedId.Templates" Version="1.0.0-beta08" />
     </ItemGroup>
+    <ItemGroup Condition="$(MSBuildProjectDirectory.Contains('domains'))">
+        <ProjectReference Include="..\..\..\..\application\configuration\src\MyData.Configuration\MyData.Configuration.csproj" />
+        <ProjectReference Include="..\..\..\..\integrations\clients\sdk\MyData.Clients.Sdk\MyData.Clients.Sdk.csproj" />
+        <ProjectReference Include="..\..\..\..\infrastructure\database\sdk\MyData.Databases.Sdk\MyData.Databases.Sdk.csproj" />
+    </ItemGroup>
 </Project>

@@ -12,9 +12,9 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Domains\Bea\" />
-	  <Folder Include="Domains\Bls\" />
-	  <Folder Include="Domains\Fda\" />
+	  <Folder Include="Domains\Labor\" />
+	  <Folder Include="Domains\Crime\" />
+	  <Folder Include="Domains\Health\" />
 	  <Folder Include="Exceptions\" />
 	</ItemGroup>
 </Project>

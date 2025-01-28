@@ -2,11 +2,11 @@
     <PropertyGroup>
         <MyDataTargetFramework>net9.0</MyDataTargetFramework>
     </PropertyGroup>
-    <ItemGroup>
-        <Content Include="appsettings.json" Condition="Exists('$(MSBuildProjectDirectory)\appsettings.json')" >
+    <ItemGroup Condition="$(MSBuildProjectDirectory.Contains('domains'))">
+        <Content Include="$(MSBuildThisFileDirectory)\appsettings.json" Condition="Exists('$(MSBuildThisFileDirectory)\appsettings.json')" >
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Content Include="appsettings.Development.json" Condition="Exists('$(MSBuildProjectDirectory)\appsettings.Development.json')" >
+        <Content Include="$(MSBuildThisFileDirectory)\appsettings.Development.json" Condition="Exists('$(MSBuildThisFileDirectory)\appsettings.Development.json')" >
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
     </ItemGroup>

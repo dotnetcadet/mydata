@@ -1,73 +1,63 @@
-﻿using MyData.Clients.RESTCountry.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using static System.Text.Json.JsonSerializer;
 
 namespace MyData.Clients.RESTCountry;
 
-public class RESTCountryClient : IRESTCountryClient
+public class RESTCountryClient : Client, IRESTCountryClient
 {
-    public RESTCountryClient(RESTCountryClientOptions options, HttpClient client)
+    RESTCountryClient(RESTCountryClientOptions options, HttpClient httpClient) : base(httpClient)
     {
         Endpoint = options.Endpoint;
         Version = options.Version;
-        Client = client;
     }
 
-    public string Name => nameof(RESTCountryClient);
-    public Uri Endpoint { get; }
+    public override string Name => nameof(RESTCountryClient);
+    public override Uri Endpoint { get; }
     public Version Version { get;}
-    public HttpClient Client { get; }
 
-    public void Dispose()
+    async Task<Either<ClientSuccessCollection<RESTCountry>, ClientError>> IRESTCountryClient.GetAllCountriesAsync(CancellationToken cancellationToken)
     {
-        Client.Dispose();
-    }
-
-    public Task<RESTCountryClientResponse<IEnumerable<Country>>> GetAllCountriesAsync(CancellationToken cancellationToken = default)
-    {
-        return SendAsync<IEnumerable<Country>>(new RESTCountryClientRequest()
+        var request = new ClientRequest()
         {
-            Path = "all",
-            Version = Version.ToString(),
-            Endpoint = Endpoint.ToString().TrimEnd('/')
+            Method = ClientRequestMethod.Get
+        };
 
-        }, cancellationToken);
-    }
+        request.Paths.Add($"v{Version}");
+        request.Paths.Add("all");
 
-    async Task<RESTCountryClientResponse<T>> SendAsync<T>(RESTCountryClientRequest request, CancellationToken cancellationToken = default)
-    {
-        var response = await Client.SendAsync(new HttpRequestMessage()
+        var response = await this.SendEitherAsync(request, cancellationToken);
+
+        if (response.If(out ClientError error, out ClientSuccess success))
         {
-            RequestUri = request.Uri,
-            Method = HttpMethod.Get
-        }, cancellationToken);
-
-        if (!response.IsSuccessStatusCode)
-        {
-
+            return error;
         }
-
-        using (var stream = await response.Content.ReadAsStreamAsync())
+        else
         {
-            var data = await JsonSerializer.DeserializeAsync<T>(
-                stream, 
-                cancellationToken: cancellationToken);
+            var stream = success.Body;
+            var data = await DeserializeAsync<IList<RESTCountry>>(stream);
 
-            return new() { Data = data! };
+            return new ClientSuccessCollection<RESTCountry>(data!)
+            {
+                StatusCode = success.StatusCode,
+                Body = stream
+            };
         }
     }
-    async Task<IClientResponse> IClient.SendAsync(IClientRequest request, CancellationToken cancellationToken = default)
+
+    #region Helpers
+
+    public static IRESTCountryClient Create(HttpClient client)
     {
-        if (request is not RESTCountryClientRequest)
-        {
-            throw new Exception();
-        }
-
-
-        throw new NotImplementedException();
+        return new RESTCountryClient(new(), client);
     }
+
+    public static IRESTCountryClient Create(HttpClient client, Action<RESTCountryClientOptions> configure)
+    {
+        var options = new RESTCountryClientOptions();
+
+        configure.Invoke(options);
+
+        return new RESTCountryClient(options, client);
+    }
+
+    #endregion
 }
