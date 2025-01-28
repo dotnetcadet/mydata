@@ -1,17 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace MyData.Clients;
 
-public interface IClient
+public interface IClient : IDisposable
 {
+    /// <summary>
+    ///
+    /// </summary>
+    string Name { get; }
+
     /// <summary>
     /// 
     /// </summary>
-    string Name { get; }
+    Uri Endpoint { get; }
 
     /// <summary>
     /// 

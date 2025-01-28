@@ -6,4 +6,6 @@ namespace MyData.Clients;
 
 public interface IClientResponse
 {
+    int Status { get; }
+    object? Data { get; }
 }

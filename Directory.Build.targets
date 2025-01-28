@@ -11,5 +11,7 @@
         <PackageReference Update="Microsoft.Extensions.Logging" Version="9.0.1" />
         <PackageReference Update="Microsoft.Extensions.Options" Version="9.0.1" />
         <PackageReference Update="Microsoft.Extensions.Http" Version="9.0.1" />
+		<PackageReference Update="StronglyTypedId" Version="1.0.0-beta08" PrivateAssets="all" ExcludeAssets="runtime" />
+		<PackageReference Update="StronglyTypedId.Templates" Version="1.0.0-beta08" />
     </ItemGroup>
 </Project>

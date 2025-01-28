@@ -3,8 +3,18 @@
 		<TargetFramework>$(MyDataTargetFramework)</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="StronglyTypedId" />
+		<PackageReference Include="StronglyTypedId.Templates" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="$(UserProfile)\.nuget\packages\stronglytypedid.templates\1.0.0-beta08\build\AdditionalFiles\*.typedid">
+			<Visible>false</Visible>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
 	  <Folder Include="Domains\Bea\" />
 	  <Folder Include="Domains\Bls\" />
 	  <Folder Include="Domains\Fda\" />
+	  <Folder Include="Exceptions\" />
 	</ItemGroup>
 </Project>

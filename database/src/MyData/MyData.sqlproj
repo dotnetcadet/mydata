@@ -10,19 +10,31 @@
   <ItemGroup>
     <Folder Include=".scripts" />
     <Folder Include=".scripts\post" />
+    <Folder Include=".scripts\post\core" />
     <Folder Include=".scripts\pre" />
     <Folder Include=".security" />
     <Folder Include=".security\schemas" />
-    <Folder Include="bea" />
-    <Folder Include="bea\bea" />
-    <Folder Include="cdc" />
-    <Folder Include="cdc\tables" />
+    <Folder Include="agriculture" />
+    <Folder Include="agriculture\tables" />
     <Folder Include="census" />
     <Folder Include="census\tables" />
     <Folder Include="core" />
     <Folder Include="core\tables" />
-    <Folder Include="fbi" />
-    <Folder Include="fda" />
+    <Folder Include="crime" />
+    <Folder Include="crime\tables" />
+    <Folder Include="economics" />
+    <Folder Include="economics\tables" />
+    <Folder Include="health" />
+    <Folder Include="health\tables" />
+    <Folder Include="labor" />
+    <Folder Include="labor\tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".scripts\post\core\Merge.CountriesRegions.sql" />
+    <None Include=".scripts\post\core\Merge.CountriesStates.sql" />
+    <None Include=".scripts\post\core\Merge.Countries.sql" />
+    <None Include=".scripts\post\core\Merge.CountriesStatesTypes.sql" />
+    <None Include=".scripts\post\core\Merge.CountriesSubregions.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include=".scripts\post\Script.PostDeployment.sql" />

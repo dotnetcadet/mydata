@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MyData;
 
-namespace MyData;
-
-public abstract class Entity<T> : Entity
+public abstract class Entity<T> where T : Entity<T>
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    public Reference? Reference { get; set; }
 }
