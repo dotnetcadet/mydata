@@ -31,15 +31,26 @@ public abstract class Client : IClient
         try
         {
             // Build request URI
-            var uriBuilder = new UriBuilder(Endpoint);
+            Uri uri = default;
 
-            uriBuilder.Path = string.Join('/', request.Paths);
-            uriBuilder.Query = string.Join('&', request.Queries.Select((key, value) => string.Join('=', key, value)));
+            if (request is ClientRequest clientRequest)
+            {
+                uri = clientRequest.Uri;
+            }
+            else
+            {
+                var uriBuilder = new UriBuilder(Endpoint);
+
+                uriBuilder.Path = string.Join('/', request.Paths);
+                uriBuilder.Query = string.Join('&', request.Queries.Select((key, value) => string.Join('=', key, value)));
+
+                uri = uriBuilder.Uri;
+            }
 
             // Create HTTP Request
             var httpRequestMessage = new HttpRequestMessage()
             {
-                RequestUri = uriBuilder.Uri,
+                RequestUri = uri,
                 Method = request.Method switch
                 {
                     ClientRequestMethod.Get => HttpMethod.Get,

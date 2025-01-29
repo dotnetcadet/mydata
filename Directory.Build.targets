@@ -19,4 +19,7 @@
         <ProjectReference Include="..\..\..\..\integrations\clients\sdk\MyData.Clients.Sdk\MyData.Clients.Sdk.csproj" />
         <ProjectReference Include="..\..\..\..\infrastructure\database\sdk\MyData.Databases.Sdk\MyData.Databases.Sdk.csproj" />
     </ItemGroup>
+    <ItemGroup Condition="$(MSBuildProjectDirectory.Contains('domains')) and $(MSBuildProjectDirectory.Contains('Tasks'))">
+        <ProjectReference Include="..\..\..\..\application\quartz\src\MyData.Quartz\MyData.Quartz.csproj" />
+    </ItemGroup>
 </Project>

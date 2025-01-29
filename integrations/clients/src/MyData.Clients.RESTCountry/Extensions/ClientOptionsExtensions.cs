@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 namespace MyData.Clients;
 
 using MyData.Clients.RESTCountry;
+using System;
+using System.Net.Http;
 
 public static class ClientOptionsExtensions
 {

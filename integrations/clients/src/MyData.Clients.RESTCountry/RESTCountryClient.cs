@@ -1,4 +1,9 @@
-﻿using static System.Text.Json.JsonSerializer;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Collections.Generic;
+using static System.Text.Json.JsonSerializer;
 
 namespace MyData.Clients.RESTCountry;
 
@@ -16,7 +21,7 @@ public class RESTCountryClient : Client, IRESTCountryClient
 
     async Task<Either<ClientSuccessCollection<RESTCountry>, ClientError>> IRESTCountryClient.GetAllCountriesAsync(CancellationToken cancellationToken)
     {
-        var request = new ClientRequest()
+        var request = new ClientRequest(Endpoint)
         {
             Method = ClientRequestMethod.Get
         };
@@ -35,11 +40,13 @@ public class RESTCountryClient : Client, IRESTCountryClient
             var stream = success.Body;
             var data = await DeserializeAsync<IList<RESTCountry>>(stream);
 
-            return new ClientSuccessCollection<RESTCountry>(data!)
+            var collection = new ClientSuccessCollection<RESTCountry>(data!)
             {
                 StatusCode = success.StatusCode,
                 Body = stream
             };
+
+            collection.Meta.Add("Source", $"GET {request.Uri}");
         }
     }
 

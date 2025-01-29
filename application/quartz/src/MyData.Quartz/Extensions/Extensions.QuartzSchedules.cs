@@ -5,19 +5,19 @@ using System.Reflection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace MyData.Core.Tasks;
+namespace MyData.Quartz;
 
-internal static class QuartzSchedulesExtensions
+public static class QuartzSchedulesExtensions
 {
-    public static HostApplicationBuilder AddQuartzJobs(this HostApplicationBuilder builder)
+    public static HostApplicationBuilder AddMyQuartzJobs(this HostApplicationBuilder builder, string domain)
     {
         builder.Services.AddQuartz(options =>
         {
             var configuration = builder.Configuration;
-            var schedules = configuration.GetSection("MyData:Schedules").GetChildren();
+            var schedules = configuration.GetSection($"MyData:Domains:{domain}:Tasks").GetChildren();
 
-            var jobs = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(type => type.IsAssignableTo(typeof(IJob)) && type.Name.StartsWith("MyData"));
+            var jobs = Assembly.GetEntryAssembly().GetTypes()
+                .Where(type => type.IsAssignableTo(typeof(IJob)));
 
             foreach (var schedule in schedules)
             {
@@ -37,7 +37,7 @@ internal static class QuartzSchedulesExtensions
 
                     if (beginOnStartUp)
                     {
-                        configure.StartAt(DateTimeOffset.UtcNow.AddSeconds(5));
+                        configure.StartNow();
                     }
                 });
 

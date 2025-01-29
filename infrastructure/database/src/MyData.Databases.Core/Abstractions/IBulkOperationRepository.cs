@@ -23,7 +23,7 @@ public interface IBulkOperationRepository<T> : IRepository<T>
     /// </summary>
     /// <param name="predicate"></param>
     /// <returns></returns>
-    Task<int> UpdateAsync(Expression<Func<T, bool>> predicate); 
+    Task<int> UpdateAsync(Expression<Func<T, bool>> predicate);
     /// <summary>
     /// Executes a named operation to be performed on the data layer.
     /// </summary>

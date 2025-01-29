@@ -7,7 +7,7 @@ internal class RegionEntityTypeConfiguration : IEntityTypeConfiguration<Region>
 {
     public void Configure(EntityTypeBuilder<Region> builder)
     {
-        builder.ToTable("Regions", "core");
+        builder.ToTable("CountriesRegions", "core");
         builder.HasKey(p => p.Id);
 
         builder.Property(p => p.Id);
@@ -16,9 +16,12 @@ internal class RegionEntityTypeConfiguration : IEntityTypeConfiguration<Region>
             complex.Property(p => p.Name).HasColumnName("Name");
         });
 
+
         builder.HasMany(p => p.Subregions)
             .WithOne(p => p.Region)
             .HasForeignKey(p => p.RegionId);
+
+        builder.Ignore(p => p.Countries);
 
         builder.HasMany(p => p.Countries)
             .WithOne(p => p.Region)

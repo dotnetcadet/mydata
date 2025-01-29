@@ -13,6 +13,7 @@ CREATE TABLE [core].[Countries]
   [SubregionId]       INT NULL,
   [ReferenceSource]   NVARCHAR(MAX) NULL,
   [ReferenceLink]     NVARCHAR(1000) NULL,
+  [ReferenceType]     VARCHAR(55) NULL,
 
   CONSTRAINT [PrimaryKeyCountries] PRIMARY KEY ([Id]),
   CONSTRAINT [ForeignKeyCountriesToCountriesRegions] FOREIGN KEY ([RegionId]) REFERENCES [core].[CountriesRegions]([Id]),

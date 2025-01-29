@@ -15,6 +15,5 @@
 	  <Folder Include="Domains\Labor\" />
 	  <Folder Include="Domains\Crime\" />
 	  <Folder Include="Domains\Health\" />
-	  <Folder Include="Exceptions\" />
 	</ItemGroup>
 </Project>

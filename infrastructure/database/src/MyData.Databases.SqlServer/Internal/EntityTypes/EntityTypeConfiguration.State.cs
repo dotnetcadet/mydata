@@ -8,7 +8,7 @@ internal class StateEntityTypeConfiguration : IEntityTypeConfiguration<State>
 {
     public void Configure(EntityTypeBuilder<State> builder)
     {
-        builder.ToTable("States", "core");
+        builder.ToTable("CountriesStates", "core");
         builder.HasKey(p => p.Id);
 
         builder.Property(p => p.Id).HasColumnName("id");

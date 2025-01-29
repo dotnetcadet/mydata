@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace MyData.Databases.Internal;
+namespace MyData.Databases.SqlServer;
 
-internal class CoreContext : DbContext
+using Internal;
+
+public class CoreContext : DbContext
 {
     public CoreContext()
     {
     }
+
+    public DbSet<Country> Countries { get; set; }
+    public DbSet<Region> Regions { get; set; }
+    public DbSet<Subregion> Subregions { get; set; }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder builder)
     {
@@ -25,10 +31,10 @@ internal class CoreContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfiguration(new CountryEntityTypeConfiguration());
+        //builder.ApplyConfiguration(new CountryEntityTypeConfiguration());
        // builder.ApplyConfiguration(new EthnicityEntityTypeConfiguration());
         builder.ApplyConfiguration(new RegionEntityTypeConfiguration());
-        builder.ApplyConfiguration(new StateEntityTypeConfiguration());
-        builder.ApplyConfiguration(new SubregionEntityTypeConfiguration());
+        //builder.ApplyConfiguration(new StateEntityTypeConfiguration());
+        //builder.ApplyConfiguration(new SubregionEntityTypeConfiguration());
     }
 }

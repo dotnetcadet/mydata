@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace MyData.Databases;
 
-public class RepositoryException
+public class DatabaseException
 {
 }

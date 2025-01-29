@@ -26,6 +26,7 @@ public static class HostApplicationBuilderExtensions
 
         configure.Invoke(options);
 
+        builder.Services.AddHttpClient();
         builder.Services.AddSingleton<IClientFactory, ClientFactory>();
 
         return builder;
