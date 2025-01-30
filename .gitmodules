@@ -1,0 +1,9 @@
+[submodule "submodules"]
+	path = submodules
+	url = https://github.com/assimalign/ograph.git
+[submodule ".submodules/ograph"]
+	path = .submodules/ograph
+	url = https://github.com/assimalign/ograph.git
+[submodule ".submodules/ograph-aspnetcore"]
+	path = .submodules/ograph-aspnetcore
+	url = https://github.com/assimalign/ograph-aspnetcore.git
