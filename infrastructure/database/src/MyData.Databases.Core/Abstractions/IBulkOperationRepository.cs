@@ -10,7 +10,7 @@ namespace MyData.Databases;
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public interface IBulkOperationRepository<T> : IRepository<T>
-    where T : Entity<T>, new()
+    where T : Entity, new()
 {
     /// <summary>
     /// Represents a delete operation with a predicate

@@ -26,7 +26,7 @@ public abstract class Client : IClient
     public abstract string Name { get; }
     public abstract Uri Endpoint { get; }
 
-    public async Task<IClientResponse> SendAsync(IClientRequest request, CancellationToken cancellationToken = default)
+    public virtual async Task<IClientResponse> SendAsync(IClientRequest request, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -41,7 +41,7 @@ public abstract class Client : IClient
             {
                 var uriBuilder = new UriBuilder(Endpoint);
 
-                uriBuilder.Path = string.Join('/', request.Paths);
+                uriBuilder.Path = request.Path;
                 uriBuilder.Query = string.Join('&', request.Queries.Select((key, value) => string.Join('=', key, value)));
 
                 uri = uriBuilder.Uri;

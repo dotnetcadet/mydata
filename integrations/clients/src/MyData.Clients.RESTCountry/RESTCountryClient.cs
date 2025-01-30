@@ -23,11 +23,9 @@ public class RESTCountryClient : Client, IRESTCountryClient
     {
         var request = new ClientRequest(Endpoint)
         {
-            Method = ClientRequestMethod.Get
+            Method = ClientRequestMethod.Get,
+            Path = $"v{Version}/all"
         };
-
-        request.Paths.Add($"v{Version}");
-        request.Paths.Add("all");
 
         var response = await this.SendEitherAsync(request, cancellationToken);
 
@@ -47,6 +45,8 @@ public class RESTCountryClient : Client, IRESTCountryClient
             };
 
             collection.Meta.Add("Source", $"GET {request.Uri}");
+
+            return collection;
         }
     }
 

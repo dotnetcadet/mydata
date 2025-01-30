@@ -1,13 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Net.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace MyData.Clients;
 
 using MyData.Clients.RESTCountry;
-using System;
-using System.Net.Http;
 
-public static class ClientOptionsExtensions
+public static class RESTClientOptionsExtensions
 {
     public static ClientOptions UseRESTCountryClient(this ClientOptions options)
     {
@@ -23,7 +23,7 @@ public static class ClientOptionsExtensions
         ArgumentNullException.ThrowIfNull(options, nameof(options));
         ArgumentNullException.ThrowIfNull(configure, nameof(configure));
 
-        options.Services.TryAddScoped<IRESTCountryClient>(serviceProvider =>
+        options.Services.TryAddScoped<IClient>(serviceProvider =>
         {
             var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
             var httpClient = httpClientFactory.CreateClient(nameof(IRESTCountryClient));

@@ -2,7 +2,7 @@
 
 
 public interface IBatchResult<T>
-    where T : Entity<T>, new()
+    where T : Entity, new()
 {
     BatchResultState State { get;}
     T Entity { get; }

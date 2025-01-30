@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MyData.Clients;
 
-namespace MyData.Clients
+public class ClientSuccessObject<T> : ClientSuccess
 {
-    internal class ClientSuccessObject
-    {
-    }
+    public required T? Data { get; set; }
 }

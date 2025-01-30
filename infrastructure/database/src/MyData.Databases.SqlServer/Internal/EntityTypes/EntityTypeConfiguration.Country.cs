@@ -10,13 +10,15 @@ internal class CountryEntityTypeConfiguration : IEntityTypeConfiguration<Country
         builder.ToTable("Countries", "core");
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.Id);
-        builder.OwnsOne(p => p.Currency, complex =>
-        {
-            complex.Property(p => p.Code).HasColumnName("Currency");
-            complex.Property(p => p.Name).HasColumnName("CurrencyName");
-            complex.Property(p => p.Symbol).HasColumnName("CurrencySymbol");
-        });
+        builder.Property(p => p.Id).UseIdentityColumn(1, 1);
+
+        //builder.OwnsOne(p => p.Currency, complex =>
+        //{
+        //    complex.Property(p => p.Code).HasColumnName("Currency");
+        //    complex.Property(p => p.Name).HasColumnName("CurrencyName");
+        //    complex.Property(p => p.Symbol).HasColumnName("CurrencySymbol");
+        //});
+
         builder.OwnsOne(p => p.Info, complex =>
         {
             complex.Property(p => p.Name).HasColumnName("Name");
@@ -24,8 +26,17 @@ internal class CountryEntityTypeConfiguration : IEntityTypeConfiguration<Country
             complex.Property(p => p.ISO2).HasColumnName("ISO2");
             complex.Property(p => p.ISO3).HasColumnName("ISO3");
             complex.Property(p => p.Capital).HasColumnName("Capital");
-            complex.Property(p => p.PhoneCore).HasColumnName("PhoneCore");
         });
+
+        builder.OwnsOne(p => p.Reference, complex =>
+        {
+            complex.Property(p => p.Source).HasColumnName("ReferenceSource");
+            complex.Property(p => p.Link).HasColumnName("ReferenceLink");
+            complex.Property(p => p.Type).HasColumnName("ReferenceType");
+        });
+
+        builder.Ignore(p => p.Kind);
+        builder.Ignore(p => p.Domain);
 
         builder.HasOne(p => p.Subregion)
             .WithMany(p => p.Countries)

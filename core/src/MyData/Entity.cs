@@ -5,5 +5,10 @@ public abstract class Entity
     /// <summary>
     /// 
     /// </summary>
-    public Reference? Reference { get; set; }
+    public abstract EntityKind Kind { get; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public abstract EntityDomain Domain { get; }
 }

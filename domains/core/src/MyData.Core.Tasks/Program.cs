@@ -1,6 +1,4 @@
-﻿using Quartz;
-using Microsoft.Extensions.Hosting;
-using MyData.Core.Tasks;
+﻿using Microsoft.Extensions.Hosting;
 using MyData.Clients;
 using MyData.Configuration;
 using MyData.Databases;

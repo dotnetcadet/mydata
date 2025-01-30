@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyData.Census.Tasks.Options;
+namespace MyData;
 
-internal class MyDataOptions
+public class ResponseMeta
 {
-    public MyDataCensusOptions Census { get; set; }
 }

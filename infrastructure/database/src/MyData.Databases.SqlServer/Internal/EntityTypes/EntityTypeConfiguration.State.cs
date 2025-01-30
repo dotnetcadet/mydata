@@ -11,11 +11,19 @@ internal class StateEntityTypeConfiguration : IEntityTypeConfiguration<State>
         builder.ToTable("CountriesStates", "core");
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.Id).HasColumnName("id");
+        builder.Property(p => p.Id).UseIdentityColumn(1, 1).HasColumnName("Id");
         builder.OwnsOne(p => p.Info, complex =>
         {
             complex.Property(p => p.Name).HasColumnName("Name");
         });
+        builder.OwnsOne(p => p.Reference, complex =>
+        {
+            complex.Property(p => p.Source).HasColumnName("ReferenceSource");
+            complex.Property(p => p.Link).HasColumnName("ReferenceLink");
+            complex.Property(p => p.Type).HasColumnName("ReferenceType");
+        });
+        builder.Ignore(p => p.Kind);
+        builder.Ignore(p => p.Domain);
 
         builder.HasOne(p => p.Country)
             .WithMany(p => p.States)

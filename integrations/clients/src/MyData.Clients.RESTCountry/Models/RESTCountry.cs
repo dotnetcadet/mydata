@@ -14,9 +14,8 @@ public class RESTCountry
     [JsonPropertyName("cca2")]
     public string? Cca2 { get; set; }
 
-    //[JsonPropertyName("ccn3")]
-    ////[JsonConverter(typeof(ParseStringConverter))]
-    //public string? Ccn3 { get; set; }
+    [JsonPropertyName("ccn3")]
+    public string? Ccn3 { get; set; }
 
     [JsonPropertyName("cca3")]
     public string? Cca3 { get; set; }
@@ -61,7 +60,7 @@ public class RESTCountry
     public double Area { get; set; }
 
     [JsonPropertyName("demonyms")]
-    public Demonyms? Demonyms { get; set; }
+    public RESTCountryDemonyms? Demonyms { get; set; }
 
     [JsonPropertyName("flag")]
     public string? Flag { get; set; }
@@ -111,7 +110,7 @@ public class RESTCountry
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("gini")]
-    public Gini? Gini { get; set; }
+    public RESTCountryGini? Gini { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("postalCode")]

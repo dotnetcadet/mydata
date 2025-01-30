@@ -5,8 +5,9 @@ CREATE TABLE [core].[CountriesStates]
   [CountryId]         INT NOT NULL,
   [Code]              NVARCHAR(255) NULL,
   [TypeId]            INT NULL,
-  [ReferenceSource]   NVARCHAR(MAX) NULL,
-  [ReferenceLink]     NVARCHAR(1000) NULL,
+  [ReferenceSource]   VARCHAR(MAX) NULL,
+  [ReferenceLink]     VARCHAR(1000) NULL,
+  [ReferenceType]     VARCHAR(55) NULL,
 
   CONSTRAINT [PrimaryKeyCountriesStates] PRIMARY KEY ([Id]),
   CONSTRAINT [ForeignKeyCountriesStatesToCountries] FOREIGN KEY ([CountryId]) REFERENCES [core].[Countries]([Id]),

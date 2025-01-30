@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MyData.Databases;
 
 public abstract class Repository<T> : IQueryableRepository<T>, IBulkOperationRepository<T>
-    where T : Entity<T>, new()
+    where T : Entity, new()
 {
     public abstract Type ElementType { get; }
     public abstract Expression Expression { get; }
@@ -26,19 +26,19 @@ public abstract class Repository<T> : IQueryableRepository<T>, IBulkOperationRep
 
 
     #region Implicit Implementations
-    async Task<object> IRepository.CreateAsync(object entity, CancellationToken cancellationToken = default)
+    async Task<Entity> IRepository.CreateAsync(object entity, CancellationToken cancellationToken = default)
     {
         return await CreateAsync((T)entity, cancellationToken).ConfigureAwait(false);
     }
-    async Task<object> IRepository.UpdateAsync(object[] keys, Action<object> context, CancellationToken cancellationToken = default)
+    async Task<Entity> IRepository.UpdateAsync(object[] keys, Action<Entity> context, CancellationToken cancellationToken = default)
     {
         return await UpdateAsync(keys, (Action<T>)context, cancellationToken).ConfigureAwait(false);
     }
-    async Task<object> IRepository.DeleteAsync(object[] keys, CancellationToken cancellationToken)
+    async Task<Entity> IRepository.DeleteAsync(object[] keys, CancellationToken cancellationToken)
     {
         return await DeleteAsync(keys, cancellationToken).ConfigureAwait(false);
     }
-    async Task<object> IRepository.GetAsync(object[] keys, CancellationToken cancellationToken)
+    async Task<Entity> IRepository.GetAsync(object[] keys, CancellationToken cancellationToken)
     {
        return await GetAsync(keys, cancellationToken).ConfigureAwait(false);
     }

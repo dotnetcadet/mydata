@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace MyData;
 
-public class Ethnicity : Entity<Ethnicity>
+public class Ethnicity //: Entity<Ethnicity>
 {
 }

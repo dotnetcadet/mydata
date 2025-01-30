@@ -1,6 +1,7 @@
 ﻿namespace MyData;
 
-public abstract class Entity<T> where T : Entity<T>
+public abstract class Entity<T> : Entity
+    where T : Entity<T>
 {
     /// <summary>
     /// 

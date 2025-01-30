@@ -1,6 +1,6 @@
 ﻿namespace MyData.Clients.Fda;
 
-public class FdaClient
+public class UsfdaClient
 {
 
 }

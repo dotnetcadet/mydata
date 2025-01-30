@@ -7,18 +7,18 @@ namespace MyData.Databases;
 
 
 public interface IIncludableRepository<T> : IQueryable<T>, IRepository
-    where T : class, new()
+    where T : Entity, new()
 {
     IIncludableRepository<T, TProperty> Include<TProperty>(
         Expression<Func<T, IEnumerable<TProperty>>> navigation)
-        where TProperty : class, new();
+        where TProperty : Entity, new();
 }
 
 public interface IIncludableRepository<T, TProperty> : IIncludableRepository<T>
-    where TProperty : class, new()
-    where T : class, new()
+    where TProperty : Entity, new()
+    where T : Entity, new()
 {
     IIncludableRepository<TProperty, TNested> ThenInclude<TNested>(
         Expression<Func<TProperty, IEnumerable<TNested>>> navigation) 
-        where TNested : class, new();
+        where TNested : Entity, new();
 }

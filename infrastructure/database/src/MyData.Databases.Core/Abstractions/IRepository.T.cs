@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace MyData.Databases;
 
 public interface IRepository<T> : IRepository
-    where T : Entity<T>, new()
+    where T : Entity, new()
 {
     /// <summary>
     /// 
@@ -17,6 +17,6 @@ public interface IRepository<T> : IRepository
     new Task<T> DeleteAsync(object[] keys, CancellationToken cancellationToken = default);
     Task<T> UpdateAsync(object[] keys, Action<T> configure, CancellationToken cancellationToken = default);
     Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default);
-    Task<T> UpcertAsync(T entity, CancellationToken cancellationToken = default);
+   // Task<T> UpcertAsync(T entity, CancellationToken cancellationToken = default);
     IRepositoryBatchContext<T> CreateBatchContext();
 }

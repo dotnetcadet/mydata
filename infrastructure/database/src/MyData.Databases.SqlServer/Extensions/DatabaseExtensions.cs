@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 namespace MyData.Databases;
 
 using Internal;
-using Microsoft.Extensions.Configuration;
-using SqlServer;
 
 public static class DatabaseExtensions
 {
