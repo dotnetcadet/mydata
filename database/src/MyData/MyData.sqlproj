@@ -16,16 +16,22 @@
     <Folder Include=".security\schemas" />
     <Folder Include="agriculture" />
     <Folder Include="agriculture\tables" />
+    <Folder Include="agriculture\views" />
     <Folder Include="census" />
     <Folder Include="census\tables" />
+    <Folder Include="census\views" />
     <Folder Include="core" />
     <Folder Include="core\tables" />
+    <Folder Include="core\views" />
     <Folder Include="crime" />
     <Folder Include="crime\tables" />
     <Folder Include="economics" />
     <Folder Include="economics\tables" />
+    <Folder Include="government" />
+    <Folder Include="government\tables" />
     <Folder Include="health" />
     <Folder Include="health\tables" />
+    <Folder Include="health\views" />
     <Folder Include="labor" />
     <Folder Include="labor\tables" />
   </ItemGroup>
@@ -35,6 +41,7 @@
     <None Include=".scripts\post\core\Merge.Countries.sql" />
     <None Include=".scripts\post\core\Merge.CountriesStatesTypes.sql" />
     <None Include=".scripts\post\core\Merge.CountriesSubregions.sql" />
+    <None Include=".scripts\post\core\Merge.Ethnicity.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include=".scripts\post\Script.PostDeployment.sql" />
